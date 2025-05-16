@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
+}: Readonly<{                         //TypeScript
+  children: React.ReactNode;          //It will take only input of react components only
 }>) {
   return (
     <html lang="en" className="dark">
