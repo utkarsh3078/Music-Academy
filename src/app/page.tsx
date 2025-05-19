@@ -1,6 +1,8 @@
 import FeaturedCourse from "@/components/FeaturedCourse";
 import HeroSection from "@/components/HeroSection";
+import MovingCards from "@/components/movingCards";
 import ScrollSection from "@/components/ScrollSection";
+import UpcomingWebinars from "@/components/UpcomingWebinars";
 
 
 export default function Home() {
@@ -9,6 +11,8 @@ export default function Home() {
       < HeroSection />
       <FeaturedCourse />
       <ScrollSection />
+      <MovingCards />
+      <UpcomingWebinars />
     </main>
   );
 }
