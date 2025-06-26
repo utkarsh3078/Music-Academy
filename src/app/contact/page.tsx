@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Meteors } from "@/components/ui/meteors";
+// import { Meteors } from "@/components/ui/meteors";
 
 function page() {
   return (
