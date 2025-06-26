@@ -1,5 +1,7 @@
 import FeaturedCourse from "@/components/FeaturedCourse";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
+import Instuctors from "@/components/instructors";
 import MovingCards from "@/components/movingCards";
 import ScrollSection from "@/components/ScrollSection";
 import UpcomingWebinars from "@/components/UpcomingWebinars";
@@ -13,6 +15,8 @@ export default function Home() {
       <ScrollSection />
       <MovingCards />
       <UpcomingWebinars />
+      <Instuctors />
+      <Footer />
     </main>
   );
 }
