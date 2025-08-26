@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "motion/react";
-
-
+import { AnchorHTMLAttributes, ReactNode } from "react";
+import Image from "next/image";
 
 const transition = {
   type: "spring",
@@ -38,22 +38,23 @@ export const MenuItem = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={transition}
         >
-          {active === item && children && (   // added Childern here is imp ************
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
-              <motion.div
-                transition={transition}
-                layoutId="active" // layoutId ensures smooth animation
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
-              >
+          {active === item &&
+            children && ( // added Childern here is imp ************
+              <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
                 <motion.div
-                  layout // layout ensures smooth animation
-                  className="w-max h-full p-4"
+                  transition={transition}
+                  layoutId="active" // layoutId ensures smooth animation
+                  className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
                 >
-                  {children}
+                  <motion.div
+                    layout // layout ensures smooth animation
+                    className="w-max h-full p-4"
+                  >
+                    {children}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            </div>
-          )}
+              </div>
+            )}
         </motion.div>
       )}
     </div>
@@ -90,7 +91,7 @@ export const ProductItem = ({
 }) => {
   return (
     <a href={href} className="flex space-x-2">
-      <img
+      <Image
         src={src}
         width={140}
         height={70}
@@ -109,7 +110,10 @@ export const ProductItem = ({
   );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
+export const HoveredLink = ({
+  children,
+  ...rest
+}: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => {
   return (
     <a
       {...rest}

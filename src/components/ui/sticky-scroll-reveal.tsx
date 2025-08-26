@@ -11,12 +11,12 @@ export const StickyScroll = ({
   content: {
     title: string;
     description: string;
-    content?: React.ReactNode | any;
+    content?: React.ReactNode | unknown;
   }[];
   contentClassName?: string;
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
     // target: ref
@@ -35,7 +35,7 @@ export const StickyScroll = ({
         }
         return acc;
       },
-      0,
+      0
     );
     setActiveCard(closestBreakpointIndex);
   });
@@ -45,19 +45,22 @@ export const StickyScroll = ({
     "#000000", // black
     "#171717", // neutral-900
   ];
-  const linearGradients = [
-    "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
-    "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
-    "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
-  ];
+  const linearGradients = React.useMemo(
+    () => [
+      "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
+      "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
+      "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
+    ],
+    []
+  );
 
   const [backgroundGradient, setBackgroundGradient] = useState(
-    linearGradients[0],
+    linearGradients[0]
   );
 
   useEffect(() => {
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
+  }, [activeCard, linearGradients]);
 
   return (
     <motion.div
@@ -102,10 +105,12 @@ export const StickyScroll = ({
         style={{ background: backgroundGradient }}
         className={cn(
           "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-white lg:block",
-          contentClassName,
+          contentClassName
         )}
       >
-        {content[activeCard].content ?? null}
+        {typeof content[activeCard].content === "undefined"
+          ? null
+          : (content[activeCard].content as React.ReactNode)}
       </div>
     </motion.div>
   );
